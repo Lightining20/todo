@@ -2,6 +2,7 @@ import {Modal, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import DatePicker from 'react-native-date-picker';
 import {useContext, useState} from 'react';
 import {AppContext} from '../context/AppDataProvider';
+import firestore from '@react-native-firebase/firestore';
 import moment from 'moment';
 import {CONATANT_ARR} from '../constant';
 import {StyleSheet} from 'react-native';
@@ -19,25 +20,33 @@ const InputModel = ({
   const [date, setDate] = useState<Date>(new Date());
   const [priority, setPrioroty] = useState<string>('High');
   
-  const dateFormater = (date: Date, formate: string) => {
-    return moment(date).format(formate);
-  };
+ 
 
-  const addToDoList = () => {
-    setTodoList(e => [
-      ...e,
-      {
-        id: new Date().toString(),
-        date: date,
-        isArchive: false,
-        isCheck: false,
-        isFavorite: false,
-        priority: priority,
-        title: title,
-      },
-    ]);
-    setModalState(false)
-  };
+  // const addToDoList = () => {
+  //   setTodoList(e => [
+  //     ...e,
+  //     {
+        // id: new Date().toString(),
+        // date: date,
+        // isArchive: false,
+        // isCheck: false,
+        // isFavorite: false,
+        // priority: priority,
+        // title: title,
+  //     },
+  //   ]);
+  //   setModalState(false)
+  // };
+
+  const addToDoList=async()=>{
+    firestore().collection('ToDoList').add({ id: new Date().toString(),
+      date: date,
+      isArchive: false,
+      isCheck: false,
+      isFavorite: false,
+      priority: priority,
+      title: title,})
+  }
   return (
     <View>
       <Modal
@@ -49,7 +58,7 @@ const InputModel = ({
           <View style={styles.modalInput}>
           <TextInput onChangeText={(e)=>setTitle(e)} style={styles.inputField} placeholder="Task Name" placeholderTextColor='white' />
           <Text onPress={() => setDatePickerState(true)} style={styles.dateTxt}>
-            {dateFormater(date, 'dddd, D MMMM')}
+            {moment(date).format('dddd, D MMMM')}
           </Text>
           <View style={styles.priorityList}>
             {CONATANT_ARR.PRIORITY_LIST.map((e,idx) => {

@@ -1,6 +1,7 @@
 import * as Navigation from '@react-navigation/native'
 type RootNavigationScreens={
     Drawer:Navigation.NavigatorScreenParams<DrawerNavigationScreens>;
+    SplashScreen:undefined
    
 }
 type TabBarNavigationScreens={
@@ -16,4 +17,5 @@ type DrawerNavigationScreens={
    
 }
 
-export type {RootNavigationScreens,TabBarNavigationScreens,DrawerNavigationScreens}
+type AllScreens=RootNavigationScreens & TabBarNavigationScreens & DrawerNavigationScreens
+export type {RootNavigationScreens,TabBarNavigationScreens,DrawerNavigationScreens,AllScreens}
