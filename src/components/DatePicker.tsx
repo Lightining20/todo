@@ -1,8 +1,7 @@
-import { Text, View } from "react-native"
-import styles from "./datePickerStyles"
+import { StyleSheet, Text, View } from "react-native"
 import moment from "moment";
 import { useContext, useState } from "react";
-import { AppContext } from "../../context/AppDataProvider";
+import { AppContext } from "../context/AppDataProvider";
 import DatePicker from 'react-native-date-picker';
 
 
@@ -40,3 +39,15 @@ const CustomDatePicker=()=>{
     </View>
 }
 export default CustomDatePicker
+
+const styles=StyleSheet.create({
+  container:{
+      flexDirection:'row',
+      justifyContent:'center',
+      height:30
+  },
+  dateTxt:{
+      marginLeft:10,
+      marginRight:10
+  }
+})

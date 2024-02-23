@@ -7,7 +7,7 @@ import IncompleteTask from '../screens/IncompleteTask';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { COLORS } from '../theme';
 import { AppContext } from '../context/AppDataProvider';
-import InputModel from '../components/inputModel/InputModel';
+import InputModel from '../components/InputModel';
 import { CustomDatePicker } from '../components';
 
 const Tab = createMaterialTopTabNavigator<TabBarNavigationScreens>();

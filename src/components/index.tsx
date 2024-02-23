@@ -1,4 +1,4 @@
-import CustomDatePicker from "./datePicker/DatePicker";
-import InputModel from "./inputModel/InputModel";
-import Card from "./card/Card";
+import CustomDatePicker from "./DatePicker";
+import InputModel from "./InputModel";
+import Card from "./Card";
 export {CustomDatePicker,InputModel,Card}

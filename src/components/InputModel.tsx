@@ -1,12 +1,11 @@
 import {Modal, Text, TextInput, TouchableOpacity, View} from 'react-native';
-import styles from './inputModelStyles';
 import DatePicker from 'react-native-date-picker';
 import {useContext, useState} from 'react';
-import {AppContext} from '../../context/AppDataProvider';
+import {AppContext} from '../context/AppDataProvider';
 import moment from 'moment';
-import {CONATANT_ARR} from '../../constant';
-import { COLORS } from '../../theme';
-
+import {CONATANT_ARR} from '../constant';
+import {StyleSheet} from 'react-native';
+import {COLORS, MATRIX} from '../theme';
 const InputModel = ({
   modalState,
   setModalState,
@@ -53,12 +52,12 @@ const InputModel = ({
             {dateFormater(date, 'dddd, D MMMM')}
           </Text>
           <View style={styles.priorityList}>
-            {CONATANT_ARR.PRIORITY_LIST.map(e => {
-              return <Text style={styles.priortyTxt} onPress={() => setPrioroty(e)}>{e}</Text>;
+            {CONATANT_ARR.PRIORITY_LIST.map((e,idx) => {
+              return <Text key={idx*0.89898}  style={styles.priortyTxt} onPress={() => setPrioroty(e)}>{e}</Text>;
             })}
           </View>
           <TouchableOpacity onPress={addToDoList} style={styles.addBtn}>
-            <Text style={styles.addBtnTxt}>Add Task</Text>
+            <Text style={styles.addBtnTxt}>Adsssd Task</Text>
           </TouchableOpacity>
           </View>
         </View>
@@ -77,3 +76,49 @@ const InputModel = ({
   );
 };
 export default InputModel;
+
+
+const styles = StyleSheet.create({
+  priorityList: {
+    flexDirection: 'row',
+  },
+  addBtn: {
+    padding: 5,
+    backgroundColor: COLORS.WHITE_100,
+  },
+  addBtnTxt: {
+    color: COLORS.PRIMARY,
+  },
+  modal: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  inputField: {
+    width: MATRIX.scale(250),
+
+    color: COLORS.WHITE_100,
+    borderBottomColor: COLORS.WHITE_100,
+    borderBottomWidth: 1,
+  },
+  dateTxt: {
+    width: MATRIX.scale(250),
+    color: COLORS.WHITE_100,
+    borderBottomColor: COLORS.WHITE_100,
+    borderBottomWidth: 1,
+  },
+  modalInput: {
+    height: 250,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    backgroundColor: COLORS.PRIMARY,
+  },
+  priortyTxt: {
+    width: MATRIX.moderateScale(64),
+    color: COLORS.PRIMARY,
+    padding: 5,
+    margin: 5,
+    backgroundColor: COLORS.WHITE_100,
+    borderRadius: 10,
+  },
+});
